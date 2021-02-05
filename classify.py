@@ -24,6 +24,7 @@ def main(DATA_PATH):
     df = pd.read_csv(DATA_PATH)
     df = df[["cmd", "audio", "adas", "vision", "maxload", "loadstd", "valid"]]
     # print(df.head(5))
+    df = df[df.maxload != 0]
     valid, nonvalid = Tools.get_feasibility(df)
     print("\nFeasible: {} Non-Feasible: {}".format(valid, 
     nonvalid))
@@ -33,6 +34,7 @@ def main(DATA_PATH):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
     
     krange = range(1, 60)
+    knn_classifier.KNeighborsClassifier
     knn = knn_classifier.Knn(X_train, X_test, y_train, y_test)
     knn.set_krange(krange)
     err = knn.best_k()
